@@ -4,6 +4,7 @@
     angular.module('masonry', ['ng']).directive('masonry', function($timeout) {
         return {
             restrict: 'AC',
+            priority: -10,
             link: function(scope, elem, attrs) {
                 var container = elem[0];
                 var options = angular.extend({
@@ -48,6 +49,7 @@
     }).directive('masonryTile', function() {
         return {
             restrict: 'AC',
+            priority: -10,
             link: function(scope, elem) {
                 elem.css('visibility', 'hidden');
                 var master = elem.parent('*[masonry]:first').scope(),
