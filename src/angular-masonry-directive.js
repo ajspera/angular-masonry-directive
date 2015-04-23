@@ -46,7 +46,7 @@
                 scope.update();
             }
         };
-    }).directive('masonryTile', function() {
+    }).directive('masonryTile', function($timeout) {
         return {
             restrict: 'AC',
             priority: -10,
@@ -56,7 +56,7 @@
                     update = master.update,
                     removeBrick = master.removeBrick,
                     appendBricks = master.appendBricks;
-                scope.$watch(function(){ return elem[0].innerHTML }, function(val){
+                $timeout(function(val){
                     if (update) {
                         imagesLoaded( elem[0], update);
                         elem.ready(update);
