@@ -55,14 +55,16 @@
                 var master = elem.parent('*[masonry]:first').scope(),
                     update = master.update,
                     removeBrick = master.removeBrick,
-                    appendBricks = master.appendBricks;                    
-                if (update) {
-                    imagesLoaded( elem[0], update);
-                    elem.ready(update);
-                }
-                if (appendBricks) {
-                    imagesLoaded( elem[0], appendBricks(elem));
-                }                
+                    appendBricks = master.appendBricks;
+                scope.$watch(function(){ return elem[0].innerHTML }, function(val){
+                    if (update) {
+                        imagesLoaded( elem[0], update);
+                        elem.ready(update);
+                    }
+                    if (appendBricks) {
+                        imagesLoaded( elem[0], appendBricks(elem));
+                    }
+                });
                 scope.$on('$destroy', function() {
                     if (removeBrick) {
                         removeBrick();
